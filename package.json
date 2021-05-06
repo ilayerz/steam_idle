@@ -1,0 +1,11 @@
+{
+  "name": "steam_idle",
+  "version": "1.0.0",
+  "dependencies": {
+    "prompt": "^1.1.0"
+  },
+  "devDependencies": {
+    "axios": "^0.21.1",
+    "steam-user": "^4.19.5"
+  }
+}
