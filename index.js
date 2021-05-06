@@ -64,6 +64,7 @@ user.on('webSession', async (websession, cookies) => {
         ++i;
     }
     console.log(games);
+    startGame();
 })
 
 function start(credentials){
@@ -94,7 +95,7 @@ async function getGamesToLaunch(str) {
         }
         m.forEach((match, groupIndex) => {
             if(groupIndex === 1) {
-                games.push(match);
+                games.push(parseInt(match));
             }
         });
     }
@@ -115,4 +116,9 @@ async function getNumbersOfPage(str) {
         });
     }
     return numberOfPage;
+}
+
+function startGame() {
+    user.setPersona(0)
+    user.gamesPlayed(games);
 }
