@@ -119,6 +119,12 @@ async function getNumbersOfPage(str) {
 }
 
 function startGame() {
+    let totalNumberOfGames = games.length;
+    console.log('Games to farm : ' + totalNumberOfGames)
+    if(totalNumberOfGames < 1){
+        console.log('Not enough games to farm, exiting ...')
+        return;
+    }
     user.setPersona(0)
     user.gamesPlayed(games);
 }
