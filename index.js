@@ -13,10 +13,16 @@ const properties = [
     {
         name: 'password',
         hidden: true
+    },
+    {
+        name: 'delay'
     }
+
 ];
 
 prompt.start();
+
+let delay = 60000;
 
 prompt.get(properties, function (err, result) {
     if (err) { return onErr(err); }
@@ -24,6 +30,7 @@ prompt.get(properties, function (err, result) {
         accountName: result.username,
         password: result.password
     }
+    delay = result.delay;
     start(logOnCreditentials)
 });
 
@@ -41,12 +48,20 @@ let numberOfPage = 1;
 let games = [];
 
 
+let userCookies = null;
+
+
 user.on('loggedOn', async (userLogged) => {
     userUrlBadges = 'https://steamcommunity.com/id/' + userLogged.vanity_url + '/badges/?p=';
 })
 
 user.on('webSession', async (websession, cookies) => {
-    let totalPages = await firstRequestTotalPages(cookies);
+    userCookies = cookies;
+    await prestart()
+})
+
+async function prestart() {
+    let totalPages = await firstRequestTotalPages(userCookies);
     let i = 1;
 
     while (i <= totalPages) {
@@ -65,7 +80,7 @@ user.on('webSession', async (websession, cookies) => {
     }
     console.log(games);
     startGame();
-})
+}
 
 function start(credentials){
     user.logOn(credentials);
@@ -125,6 +140,16 @@ function startGame() {
         console.log('Not enough games to farm, exiting ...')
         return;
     }
+
     user.setPersona(0)
     user.gamesPlayed(games);
+
+    setTimeout(async function() {
+        console.log('Stopping farming after '+delay +' seconds ..')
+        await user.gamesPlayed();
+        console.log('Removed all previous games ..')
+        games = [];
+        console.log('Restarting process')
+        await prestart();
+    }, delay* 1000);
 }
