@@ -9,4 +9,4 @@ node index.js
 
 # Todo:
 
-- Faire une loop toutes les X minutes pour relancer la vérification de cartes et stopper le script
+- Voir pour intégrer une interface visuelle et lier le code , electron ?
