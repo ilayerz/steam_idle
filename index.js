@@ -61,7 +61,7 @@ user.on('webSession', async (websession, cookies) => {
 })
 
 async function prestart() {
-    let totalPages = await firstRequestTotalPages(userCookies);
+ /*   let totalPages = await firstRequestTotalPages(userCookies);
     let i = 1;
 
     while (i <= totalPages) {
@@ -78,7 +78,7 @@ async function prestart() {
             });
         ++i;
     }
-    console.log(games);
+    console.log(games);*/
     startGame();
 }
 
@@ -134,22 +134,22 @@ async function getNumbersOfPage(str) {
 }
 
 function startGame() {
-    let totalNumberOfGames = games.length;
+    /*let totalNumberOfGames = games.length;
     console.log('Games to farm : ' + totalNumberOfGames)
     if(totalNumberOfGames < 1){
         console.log('Not enough games to farm, exiting ...')
         return;
-    }
+    }*/
 
     user.setPersona(0)
-    user.gamesPlayed(games);
+    user.gamesPlayed([39210]);
 
-    setTimeout(async function() {
+/*    setTimeout(async function() {
         console.log('Stopping farming after '+delay +' seconds ..')
         await user.gamesPlayed();
         console.log('Removed all previous games ..')
         games = [];
         console.log('Restarting process')
         await prestart();
-    }, delay* 1000);
+    }, delay* 1000);*/
 }
