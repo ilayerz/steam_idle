@@ -9,6 +9,7 @@ const prompt = require('prompt');
 const properties = [
     {
         name: 'username',
+        hidden: true
     },
     {
         name: 'password',
@@ -140,7 +141,7 @@ function startGame() {
         console.log('Not enough games to farm, exiting ...')
         return;
     }*/
-
+    console.log('Farming FFXIV...')
     user.setPersona(0)
     user.gamesPlayed([39210]);
 
