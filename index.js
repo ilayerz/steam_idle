@@ -125,7 +125,7 @@ async function getNumbersOfPage(str) {
         }
         m.forEach((match, groupIndex) => {
             if (groupIndex === 2) {
-                numberOfPage = Math.ceil(match / 150)
+                numberOfPage = Math.ceil(parseInt(match) / 150)
             }
             console.log(`Found match, group ${groupIndex}: ${match}`);
         });
